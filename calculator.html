@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - Audi Citra Tarigan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- Icon Link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- AOS Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        html, body {
+            overflow-x: hidden;
+        }
+
+        /* Hamburger Menu transition */
+        .menu-icon.open .bar1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .menu-icon.open .bar2 {
+            opacity: 0;
+        }
+        .menu-icon.open .bar3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .menu-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600 p-6 shadow-2xl mb-1 sticky top-0 z-50 backdrop-blur-md">
+        <nav class="container mx-auto flex justify-between items-center space-x-8">
+            <!-- Logo with Neumorphism -->
+            <a href="index.html" class="font-extrabold text-4xl text-white transform transition-all duration-300 hover:scale-105 shadow-lg p-2 rounded-full bg-white/20 backdrop-blur-xl">
+                Audi Citra Tarigan
+            </a>
+
+            <!-- Hamburger Menu Button -->
+            <div class="lg:hidden flex items-center space-x-4">
+                <button id="hamburger-menu" class="menu-icon text-white text-3xl focus:outline-none">
+                    <div class="bar1 bg-white h-1 w-6 my-1"></div>
+                    <div class="bar2 bg-white h-1 w-6 my-1"></div>
+                    <div class="bar3 bg-white h-1 w-6 my-1"></div>
+                </button>
+            </div>
+
+            <!-- Menu (Desktop version) -->
+            <ul class="hidden lg:flex gap-6 text-lg text-white space-x-4">
+                <li><a href="index.html" class="hover:text-gray-200 transition-all duration-300 hover:underline">Home</a></li>
+                <li><a href="about.html" class="hover:text-gray-200 transition-all duration-300 hover:underline">About</a></li>
+                <li><a href="gallery.html" class="hover:text-gray-200 transition-all duration-300 hover:underline">Gallery</a></li>
+                <li><a href="calculator.html" class="text-sky-300 hover:text-sky-200 transition-all duration-300 hover:underline">Calculator</a></li>
+                <li><a href="registration.html" class="hover:text-gray-200 transition-all duration-300 hover:underline">Registration</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="lg:hidden flex flex-col space-y-4 p-4 bg-sky-600 absolute top-20 left-0 right-0 transform translate-x-full menu-transition">
+            <a href="index.html" class="text-white hover:text-gray-200">Home</a>
+            <a href="about.html" class="text-white hover:text-gray-200">About</a>
+            <a href="gallery.html" class="text-white hover:text-gray-200">Gallery</a>
+            <a href="calculator.html" class="text-white hover:text-gray-200">Calculator</a>
+            <a href="registration.html" class="text-white hover:text-gray-200">Registration</a>
+        </div>
+    </header>
+
+    <!-- Calculator Section -->
+    <main class="container mx-auto p-10">
+        <h1 class="text-5xl font-bold text-center text-sky-500 mb-12">Calculator</h1>
+        <div id="calculator" class="bg-sky-500 p-8 rounded-lg shadow-xl mx-auto transition-all duration-500 hover:scale-105">
+            <!-- Display Field -->
+            <input type="text" id="result" class="input w-full mb-4 p-4 text-right text-2xl bg-gray-100 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-300" readonly>
+            
+            <!-- Buttons Grid -->
+            <div class="grid grid-cols-4 gap-4">
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('1')">1</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('2')">2</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('3')">3</button>
+                <button class="btn btn-error text-xl hover:bg-red-300 transition-all duration-300" onclick="clearResult()">C</button>
+
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('4')">4</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('5')">5</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('6')">6</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('+')">+</button>
+
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('7')">7</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('8')">8</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('9')">9</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('-')">-</button>
+
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('0')">0</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('.')">.</button>
+                <button class="btn btn-success text-xl hover:bg-green-300 transition-all duration-300" onclick="calculate()">=</button>
+                <button class="btn btn-primary text-xl hover:bg-sky-300 transition-all duration-300" onclick="press('*')">*</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-sky-500 p-6 text-center text-white">
+        <div>
+            <p>&copy; 2024 Audi Citra Tarigan. All Rights Reserved.</p>
+            <div class="flex justify-center gap-6 mt-4">
+                <a href="https://www.facebook.com/share/NrZU9MGccdMZx4Zi/?mibextid=LQQJ4d" target="_blank" class="text-white hover:text-gray-200 transition-all duration-300">
+                    <i class="fab fa-facebook-square text-3xl"></i>
+                </a>
+                <a href="https://www.instagram.com/uditrgn/profilecard/?igsh=ZHc0bHc4bDlzdThx" target="_blank" class="text-white hover:text-gray-200 transition-all duration-300">
+                    <i class="fab fa-instagram text-3xl"></i>
+                </a>
+                <a href="https://www.tiktok.com/@audicitratarigan?_t=8rvUgva6oO0&_r=1" target="_blank" class="text-white hover:text-gray-200 transition-all duration-300">
+                    <i class="fab fa-brands fa-tiktok text-3xl"></i>
+                </a>
+                <a href="mailto:2382033@unai.edu" class="text-white hover:text-gray-200 transition-all duration-300">
+                    <i class="fas fa-envelope text-3xl"></i>
+                </a>
+            </div>
+            <p class="mt-4">Email: 2382033@unai.edu | Phone: +62 813-1890-3918</p>
+        </div>
+    </footer>
+
+    <!-- AOS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+        });
+
+        // Toggle hamburger menu and slide-in menu on click
+        const hamburger = document.getElementById("hamburger-menu");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        hamburger.addEventListener("click", function() {
+            this.classList.toggle("open");
+            mobileMenu.classList.toggle("translate-x-full");
+        });
+    </script>
+
+    <!-- External JavaScript -->
+    <script src="scripts/calculator.js"></script>
+</body>
+</html>
